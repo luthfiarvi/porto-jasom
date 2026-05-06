@@ -206,21 +206,25 @@
 
 .pc-user-info {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
   z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 12px 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 18px;
+  padding: 14px 16px;
+
   pointer-events: auto;
 }
-
 .pc-user-details {
   display: flex;
   align-items: center;
@@ -251,23 +255,24 @@
 }
 
 .pc-handle {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1;
 }
 
 .pc-status {
-  font-size: 14px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
 }
 
 .pc-contact-btn {
+  transform: translate(6px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 10px 8px;
+  font-size: 9px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
@@ -294,7 +299,7 @@
 .pc-details {
   width: 100%;
   position: absolute;
-  top: 3em;
+  top: 1em;
   display: flex;
   flex-direction: column;
 }
