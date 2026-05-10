@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { FiX, FiGithub } from 'react-icons/fi'; // Install react-icons jika belum: npm install react-icons
+import { FiX } from 'react-icons/fi';
 
 const ProjectModal = ({ isOpen, onClose, project }) => {
-  // State untuk mengontrol animasi penutupan
   const [isClosing, setIsClosing] = useState(false);
 
   // Fungsi untuk menangani penutupan dengan animasi
   const handleClose = () => {
     setIsClosing(true);
-    // Tunggu animasi selesai (300ms) sebelum memanggil onClose dari props
     setTimeout(() => {
       onClose();
-      setIsClosing(false); // Reset state untuk pembukaan berikutnya
+      setIsClosing(false);
     }, 300);
   };
 
@@ -22,76 +20,122 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
     } else {
       document.body.style.overflow = 'auto';
     }
-    // Cleanup function
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
 
-
-  if (!isOpen) return null;
+  if (!isOpen || !project) return null;
 
   return (
-    // Overlay
     <div
       onClick={handleClose}
-      className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
+      className="fixed inset-0 bg-black bg-opacity-90 backdrop-blur-md flex justify-center items-center z-[999] p-4 transition-opacity duration-300"
     >
-      {/* Modal Content */}
       <div
-        onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat diklik di dalam
-        className={`bg-zinc-900 border border-violet-500/50 rounded-2xl shadow-2xl shadow-violet-500/20 w-full max-w-lg transform transition-transform duration-300 ${isClosing ? 'animate-out' : 'animate-in'}`}
+        onClick={(e) => e.stopPropagation()}
+        /* DITAMBAHKAN: overflow-x-hidden agar tidak bisa geser kanan-kiri */
+        className={`bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl w-full max-w-5xl max-h-[95vh] overflow-y-auto overflow-x-hidden no-scrollbar transform transition-transform duration-300 ${
+          isClosing ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
+        }`}
       >
-        {/* --- GAMBAR PROYEK --- */}
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-56 object-cover rounded-t-2xl"
-        />
+        {/* HEADER & CLOSE BUTTON */}
+        <div className="sticky top-0 bg-zinc-900/80 backdrop-blur-md p-6 flex justify-between items-center z-10 border-b border-zinc-800">
+          <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">
+            {project.title}
+          </h2>
+          <button
+            onClick={handleClose}
+            className="text-zinc-400 hover:text-white transition-colors p-2 rounded-full hover:bg-zinc-800"
+          >
+            <FiX size={30} />
+          </button>
+        </div>
 
-        <div className="p-6 flex flex-col gap-4">
-            <div className="flex justify-between items-start">
-                <h2 className="text-2xl font-bold text-white">{project.title}</h2>
-                <button
-                    onClick={handleClose}
-                    className="text-zinc-400 hover:text-white transition-colors p-2 rounded-full hover:bg-zinc-700 -mt-2 -mr-2"
-                >
-                    <FiX size={24} />
-                </button>
+        <div className="p-6 md:p-10">
+          {/* --- GALLERY GRID (5 FOTO) --- */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-3 mb-10">
+            {/* Foto 1 - Utama (Besar) */}
+            <div className="md:col-span-4 md:row-span-2 overflow-hidden rounded-2xl h-[300px] md:h-[500px] bg-zinc-800">
+              <img
+                src={project.gallery?.[0] || project.image}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                alt="Main view"
+              />
             </div>
 
-            {/* --- DESKRIPSI LENGKAP --- */}
-            <p className="text-zinc-300 text-base leading-relaxed">
-                {project.fullDescription}
-            </p>
+            {/* Foto 2 & 3 - Samping Utama */}
+            <div className="md:col-span-2 overflow-hidden rounded-2xl h-[145px] md:h-[245px] bg-zinc-800">
+              <img
+                src={project.gallery?.[1] || project.image}
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                alt="Detail 1"
+              />
+            </div>
+            <div className="md:col-span-2 overflow-hidden rounded-2xl h-[145px] md:h-[245px] bg-zinc-800">
+              <img
+                src={project.gallery?.[2] || project.image}
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                alt="Detail 2"
+              />
+            </div>
 
-            <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center justify-center gap-2 font-semibold bg-violet-600 p-3 px-5 rounded-full w-full cursor-pointer border border-transparent hover:bg-violet-700 transition-colors"
-            >
-                <FiGithub />
-                <span>Source Code</span>
-            </a>
+            {/* Foto 4 & 5 - Baris Bawah */}
+            <div className="md:col-span-3 overflow-hidden rounded-2xl h-[150px] md:h-[250px] bg-zinc-800">
+              <img
+                src={project.gallery?.[3] || project.image}
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                alt="Detail 3"
+              />
+            </div>
+            <div className="md:col-span-3 overflow-hidden rounded-2xl h-[150px] md:h-[250px] bg-zinc-800">
+              <img
+                src={project.gallery?.[4] || project.image}
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                alt="Detail 4"
+              />
+            </div>
+          </div>
+
+          {/* --- DESKRIPSI SINGKAT --- */}
+          <div className="space-y-4 max-w-3xl mx-auto text-center border-t border-zinc-800 pt-8 pb-4">
+            <h3 className="text-zinc-500 text-sm font-semibold uppercase tracking-[0.3em]">
+              Overview
+            </h3>
+            <p className="text-zinc-200 text-lg leading-relaxed italic font-light">
+              "{project.fullDescription}"
+            </p>
+          </div>
         </div>
       </div>
-       {/* CSS untuk animasi */}
+
       <style>{`
-        @keyframes scaleIn {
-          from { transform: scale(0.95); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
+        /* Menyembunyikan scrollbar untuk Chrome, Safari dan Opera */
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
         }
-        .animate-in {
-          animation: scaleIn 0.3s ease-out forwards;
+
+        /* Menyembunyikan scrollbar untuk IE, Edge dan Firefox */
+        .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+          overflow-x: hidden; /* DITAMBAHKAN: Kunci agar konten tidak bisa geser horizontal */
         }
-        
-        @keyframes scaleOut {
-          from { transform: scale(1); opacity: 1; }
-          to { transform: scale(0.95); opacity: 0; }
+
+        @keyframes scaleIn { 
+          from { transform: scale(0.95); opacity: 0; } 
+          to { transform: scale(1); opacity: 1; } 
         }
-        .animate-out {
-          animation: scaleOut 0.3s ease-in forwards;
+        .animate-in { 
+          animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+
+        @keyframes scaleOut { 
+          from { transform: scale(1); opacity: 1; } 
+          to { transform: scale(0.95); opacity: 0; } 
+        }
+        .animate-out { 
+          animation: scaleOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
         }
       `}</style>
     </div>

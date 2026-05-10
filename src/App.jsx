@@ -79,7 +79,7 @@ function App() {
               <img src="./assets/jasom3.png" className="w-8 scale-120 rounded-md " />
               <q className="text-xs font-small">Never Give Up to Grow</q>
             </div>
-            <h1 className="text-4xl font-bold mb-6">
+            <h1 className="text-3xl font-bold mb-6">
               <ShinyText text="Hi I'm Muhammad Jasoma" disabled={false} speed={3} className='custom-class' />
             </h1>
             <BlurText
