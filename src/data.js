@@ -27,24 +27,32 @@ export const listTools = [
   { id: 8, gambar: Tools8, nama: "AI", ket: "Rendering", dad: "800" },
 ];
 
+/* =====================================================
+   IMPORT GAMBAR & VIDEO PROYEK
+===================================================== */
 import Proyek1 from "/assets/proyek/p1a.png";
-import Proyek2 from "/assets/proyek/proyek2.jpg";
-import Proyek3 from "/assets/proyek/proyek3.jpg";
-import Proyek4 from "/assets/proyek/proyek4.jpg";
-import Proyek5 from "/assets/proyek/proyek5.jpg";
-import Proyek6 from "/assets/proyek/proyek6.jpg";
+import Proyek2 from "/assets/proyek/p2a.png";
+import Proyek3 from "/assets/proyek/p3a.png";
+import Proyek10 from "/assets/proyek/p10a.png"; 
 
-/** 
- * Fungsi Helper untuk menghasilkan array gallery secara otomatis
+// --- IMPORT KHUSUS PROYEK 4 ---
+import Proyek4Img from "/assets/proyek/p4a.png"; 
+import Proyek4Vid1 from "/assets/proyek/video1.mp4"; // Ganti dengan nama file mp4 asli lu
+import Proyek4Vid2 from "/assets/proyek/video2.mp4"; // Ganti dengan nama file mp4 asli lu
+import Proyek4Vid3 from "/assets/proyek/video3.mp4"; // Ganti dengan nama file mp4 asli lu
+
+
+/** * Fungsi Helper untuk menghasilkan array gallery secara otomatis
  * Menghasilkan: ["/assets/proyek/p1a.jpeg", "/assets/proyek/p1b.jpeg", ...]
  */
 const generateGallery = (id) => {
   // Menggunakan /portofolio/ karena base URL di browser kamu memilikinya
-  // Menggunakan .jpeg sesuai dengan nama file di gambar kamu
+  // Menggunakan .png sesuai dengan nama file di gambar kamu
   return ['a', 'b', 'c', 'd', 'e'].map(char => `/portofolio/assets/proyek/p${id}${char}.png`);
 };
 
 export const listProyek = [
+  // --- PROYEK 1 (SUDAH FIX) ---
   {
     id: 1,
     image: Proyek1,
@@ -57,109 +65,124 @@ export const listProyek = [
     url: "https://github.com/rissss21",
     dad: "100",
   },
+  // --- PROYEK 2 (SUDAH FIX) ---
   {
     id: 2,
     image: Proyek2,
-    title: "IoT Air Quality Monitoring",
-    subtitle: "A smart IoT system designed to measure and analyze air quality...",
-    fullDescription: "A smart IoT system designed to measure and analyze air quality using sensors connected to a mobile application. The app provides real-time updates on air quality levels, empowering users to make healthier lifestyle decisions based on environmental conditions. This project showcases the potential of IoT in addressing environmental and public health issues.",
+    title: "SAGARA BALI",
+    subtitle: "SAGARA BALI is a coastal villa concept designed for the serene atmosphere...",
+    fullDescription: "SAGARA BALI is a coastal villa concept designed for the serene atmosphere of Canggu, Bali, embracing a seamless connection between architecture, nature, and the ocean. The design combines tropical modern aesthetics with warm natural materials such as timber, stone, and glass, creating an open and breathable living environment. Large openings, expansive terraces, and panoramic views enhance natural light and cross-ventilation, while the interior layout prioritizes comfort, privacy, and a strong visual relationship with the surrounding landscape. The concept reflects a refined balance between luxury living and the relaxed spirit of Bali’s coastal lifestyle.",
     gallery: generateGallery(2),
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/rissss21",
     dad: "200",
   },
+  // --- PROYEK 3 (SUDAH FIX) ---
   {
     id: 3,
     image: Proyek3,
-    title: "IoT Heartbeat Monitoring System",
-    subtitle: "An IoT-based healthcare project developed to measure and monitor...",
-    fullDescription: "An IoT-based healthcare project developed to measure and monitor heart rate in real-time. The system connects sensors to a local web server, enabling users and healthcare providers to track data directly from a web interface. This project highlights the integration of hardware and software to create efficient medical solutions that can be applied in local clinics or personal health monitoring.",
+    title: "The WOFL Karaoke",
+    subtitle: "The WOFL Karaoke design adopts a luxury contemporary interior concept...",
+    fullDescription: "The WOFL Karaoke design adopts a luxury contemporary interior concept, featuring textured fabric wall panels, acoustic materials, and refined wood and metal accents to create a warm, intimate, and exclusive atmosphere. Integrated indirect LED lighting enhances the spatial depth and adds a dramatic ambiance, while the use of dark grey and neutral tones maintains a modern, calm, and sophisticated character throughout the space.",
     gallery: generateGallery(3),
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "https://github.com/rissss21",
     dad: "300",
   },
+  
+  // ==========================================================
+  // --- PROYEK 4 (CAMPURAN GAMBAR & VIDEO MP4) ---
+  // ==========================================================
   {
     id: 4,
-    image: Proyek4,
-    title: "Personal Web Portfolio",
-    subtitle: "An interactive web portfolio showcasing my professional journey...",
-    fullDescription: "An interactive web portfolio showcasing my professional journey, skills, and projects. Designed with a clean yet modern aesthetic, the portfolio highlights my technical expertise in web development, software engineering, and IoT. The site also serves as a central hub for potential employers and collaborators to explore my works, reflecting both my creativity and technical precision.",
-    gallery: generateGallery(4),
+    image: Proyek4Img, // Cover luarnya pakai PNG
+    title: "ARU BRAWA",
+    subtitle: "ARU BRAWA is a contemporary tropical villa concept located in...",
+    fullDescription: "ARU BRAWA is a contemporary tropical villa concept located in the Canggu-Brawa area, designed to harmonize with the lush natural surroundings while expressing a refined architectural identity. The design combines solid stone textures, vertical wooden screens, and clean geometric forms to create a strong yet elegant façade presence. Natural materials are integrated to enhance durability and climate responsiveness, while the strategic use of shading elements and layered volumes ensures privacy, ventilation, and visual comfort. ARU BRAWA reflects a balance between modern tropical architecture and the tranquil, nature-driven lifestyle of Bali’s coastal environment.",
+    // ARRAY MANUAL: 1 PNG di depan, 3 MP4 di belakangnya
+    gallery: [Proyek4Img, Proyek4Vid1, Proyek4Vid2, Proyek4Vid3], 
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "https://github.com/rissss21",
+    url: "#",
     dad: "400",
   },
+
+  // ==========================================================
+  // --- PROYEK 5 sampai 9 (PLACEHOLDER MENGGUNAKAN PROYEK 1) ---
+  // ==========================================================
   {
     id: 5,
-    image: Proyek5,
-    title: "Color Blindness Detection App",
-    subtitle: "A cross-platform application available on both mobile and desktop...",
-    fullDescription: "A cross-platform application available on both mobile and desktop, created to help identify different types of color blindness through color recognition tests. The app provides users with instant results, making it useful for educational, medical, and self-assessment purposes. Its intuitive design and accessibility aim to support individuals in understanding and managing color vision deficiencies.",
-    gallery: generateGallery(5),
+    image: Proyek1, 
+    title: "Project 5 (Coming Soon)",
+    subtitle: "Waiting for client content...",
+    fullDescription: "Detailed description for project 5 will be updated soon once the client provides the content.",
+    gallery: generateGallery(1),
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "https://github.com/rissss21",
+    url: "#",
     dad: "500",
   },
   {
     id: 6,
-    image: Proyek6,
-    title: "Coffee Shop Website",
-    subtitle: "A fully functional website designed for a coffee shop, enabling...",
-    fullDescription: "A fully functional website designed for a coffee shop, enabling customers to explore the menu, learn about the shop’s story, and place orders online. The project focused on creating an attractive and modern interface, integrating responsive design for mobile and desktop, and ensuring smooth navigation for users. This website not only improved customer experience but also supported the coffee shop’s digital presence and business growth.",
-    gallery: generateGallery(6),
+    image: Proyek1, 
+    title: "Project 6 (Coming Soon)",
+    subtitle: "Waiting for client content...",
+    fullDescription: "Detailed description for project 6 will be updated soon once the client provides the content.",
+    gallery: generateGallery(1),
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "https://github.com/rissss21",
+    url: "#",
     dad: "600",
   },
   {
     id: 7,
-    image: Proyek3,
-    title: "IoT Heartbeat Monitoring System 2",
-    subtitle: "An IoT-based healthcare project developed to measure and monitor...",
-    fullDescription: "An IoT-based healthcare project developed to measure and monitor heart rate in real-time.",
-    gallery: generateGallery(7),
+    image: Proyek1, 
+    title: "Project 7 (Coming Soon)",
+    subtitle: "Waiting for client content...",
+    fullDescription: "Detailed description for project 7 will be updated soon once the client provides the content.",
+    gallery: generateGallery(1),
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "https://github.com/rissss21",
+    url: "#",
     dad: "300",
   },
   {
     id: 8,
-    image: Proyek4,
-    title: "Personal Web Portfolio 2",
-    subtitle: "An interactive web portfolio showcasing my professional journey...",
-    fullDescription: "An interactive web portfolio showcasing my professional journey.",
-    gallery: generateGallery(8),
+    image: Proyek1, 
+    title: "Project 8 (Coming Soon)",
+    subtitle: "Waiting for client content...",
+    fullDescription: "Detailed description for project 8 will be updated soon once the client provides the content.",
+    gallery: generateGallery(1),
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
-    url: "https://github.com/rissss21",
+    url: "#",
     dad: "400",
   },
   {
     id: 9,
-    image: Proyek5,
-    title: "Color Blindness Detection App 2",
-    subtitle: "A cross-platform application available on both mobile and desktop...",
-    fullDescription: "A cross-platform application available on both mobile and desktop.",
-    gallery: generateGallery(9),
+    image: Proyek1, 
+    title: "Project 9 (Coming Soon)",
+    subtitle: "Waiting for client content...",
+    fullDescription: "Detailed description for project 9 will be updated soon once the client provides the content.",
+    gallery: generateGallery(1),
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
-    url: "https://github.com/rissss21",
+    url: "#",
     dad: "500",
   },
+
+  // ==========================================================
+  // --- PROYEK 10 (SUDAH FIX) ---
+  // ==========================================================
   {
     id: 10,
-    image: Proyek6,
-    title: "Coffee Shop Website 2",
-    subtitle: "A fully functional website designed for a coffee shop, enabling...",
-    fullDescription: "A fully functional website designed for a coffee shop.",
-    gallery: generateGallery(10),
+    image: Proyek10,
+    title: "MR.YD HOUSE",
+    subtitle: "MR.YD HOUSE is a modern luxury residence that combines elegant architecture...",
+    fullDescription: "MR.YD HOUSE is a modern luxury residence that combines elegant architecture, refined materials, and warm contemporary interiors to create a harmonious living space filled with sophistication, comfort, and timeless beauty.",
+    gallery: generateGallery(10), 
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/rissss21",

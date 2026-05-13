@@ -27,6 +27,38 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
 
   if (!isOpen || !project) return null;
 
+  // --- FUNGSI BARU: Mengecek apakah file adalah video (.mp4) ---
+  const isVideo = (url) => {
+    if (!url) return false;
+    return url.toLowerCase().endsWith('.mp4') || url.toLowerCase().endsWith('.webm');
+  };
+
+  // --- KOMPONEN BARU: Auto-render Image atau Video ---
+  const MediaRenderer = ({ src, alt, hoverClass }) => {
+    if (!src) return null;
+    
+    if (isVideo(src)) {
+      return (
+        <video
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className={`w-full h-full object-cover transition-transform duration-500 ${hoverClass}`}
+        />
+      );
+    }
+    
+    return (
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-transform duration-500 ${hoverClass}`}
+      />
+    );
+  };
+
   return (
     <div
       onClick={handleClose}
@@ -53,48 +85,50 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
         </div>
 
         <div className="p-6 md:p-10">
-          {/* --- GALLERY GRID (5 FOTO) --- */}
+          {/* --- GALLERY GRID (5 KOTAK MEDIA) --- */}
           <div className="grid grid-cols-1 md:grid-cols-6 gap-3 mb-10">
-            {/* Foto 1 - Utama (Besar) */}
+            
+            {/* Media 1 - Utama (Besar) */}
             <div className="md:col-span-4 md:row-span-2 overflow-hidden rounded-2xl h-[300px] md:h-[500px] bg-zinc-800">
-              <img
-                src={project.gallery?.[0] || project.image}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                alt="Main view"
+              <MediaRenderer 
+                src={project.gallery?.[0] || project.image} 
+                alt="Main view" 
+                hoverClass="hover:scale-105" 
               />
             </div>
 
-            {/* Foto 2 & 3 - Samping Utama */}
+            {/* Media 2 & 3 - Samping Utama */}
             <div className="md:col-span-2 overflow-hidden rounded-2xl h-[145px] md:h-[245px] bg-zinc-800">
-              <img
-                src={project.gallery?.[1] || project.image}
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                alt="Detail 1"
+              <MediaRenderer 
+                src={project.gallery?.[1] || project.image} 
+                alt="Detail 1" 
+                hoverClass="hover:scale-110" 
               />
             </div>
             <div className="md:col-span-2 overflow-hidden rounded-2xl h-[145px] md:h-[245px] bg-zinc-800">
-              <img
-                src={project.gallery?.[2] || project.image}
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                alt="Detail 2"
+              <MediaRenderer 
+                src={project.gallery?.[2] || project.image} 
+                alt="Detail 2" 
+                hoverClass="hover:scale-110" 
               />
             </div>
 
-            {/* Foto 4 & 5 - Baris Bawah */}
+            {/* Media 4 & 5 - Baris Bawah */}
             <div className="md:col-span-3 overflow-hidden rounded-2xl h-[150px] md:h-[250px] bg-zinc-800">
-              <img
-                src={project.gallery?.[3] || project.image}
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                alt="Detail 3"
+              <MediaRenderer 
+                src={project.gallery?.[3] || project.image} 
+                alt="Detail 3" 
+                hoverClass="hover:scale-110" 
               />
             </div>
             <div className="md:col-span-3 overflow-hidden rounded-2xl h-[150px] md:h-[250px] bg-zinc-800">
-              <img
-                src={project.gallery?.[4] || project.image}
-                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                alt="Detail 4"
+              <MediaRenderer 
+                src={project.gallery?.[4] || project.image} 
+                alt="Detail 4" 
+                hoverClass="hover:scale-110" 
               />
             </div>
+
           </div>
 
           {/* --- DESKRIPSI SINGKAT --- */}
