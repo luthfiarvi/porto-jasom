@@ -1,78 +1,161 @@
+/* =========================================
+   1. GRID UTAMA (FULL LEBAR & SIMETRIS)
+========================================= */
 .chroma-grid {
   position: relative;
   width: 100%;
-  height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 260px);
-  grid-auto-rows: auto;
-
-  justify-content: start;   /* jangan center */
-  gap: 0.8rem;              /* jarak antar card sama */
-  
-  padding: 0;               /* hapus padding dalam */
-  margin: 0;                /* hapus auto center */
-  max-width: none;          /* penting supaya tidak ada frame */
-
+  grid-template-columns: repeat(2, 1fr); /* Default HP: 1 Kolom */
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 
+  /* Variabel Animasi Asli (JANGAN DIHAPUS) */
   --x: 50%;
   --y: 50%;
   --r: 220px;
 }
 
-@media (min-width: 1024px) and (max-width: 1280px) {
+@media (min-width: 640px) {
   .chroma-grid {
-    position: relative;
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(305px, 305px));
-    grid-auto-rows: auto;
-    justify-content: center;
-    gap: 1rem;
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 1rem;
-    box-sizing: border-box;
-
-    --x: 50%;
-    --y: 50%;
-    --r: 220px;
-    }
-}
-
-
-@media (max-width: 1024px) {
-  .chroma-grid {
-    grid-template-columns: 320px;
-    gap: 0.75rem;
-    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 Kolom */
   }
 }
 
+@media (min-width: 1024px) {
+  .chroma-grid {
+    /* Memaksa grid terisi penuh 3 kolom di Desktop */
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem;
+  }
+}
+
+/* =========================================
+   2. BENTUK KARTU & EFEK HOVER
+========================================= */
 .chroma-card {
-  transform: scale(0.85);
-  transform-origin: top left;
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 320px;
-  height: auto;
+  width: 100% !important;
+  height: 100%;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid #333;
-  transition: border-color 0.3s ease;
-  background: var(--card-gradient);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--card-gradient, #111);
+  cursor: pointer;
 
+  /* Matikan scale bawaan yang bikin layout nabrak */
+  transform: none; 
+
+  /* Variabel Cahaya Asli (JANGAN DIHAPUS) */
   --mouse-x: 50%;
   --mouse-y: 50%;
   --spotlight-color: rgba(255, 255, 255, 0.3);
 }
 
 .chroma-card:hover {
-  border-color: var(--card-border);
+  transform: translateY(-8px);
+  border-color: var(--card-border, #52525b);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
+/* =========================================
+   3. CONTAINER GAMBAR (MENGHILANGKAN RUANG KOSONG)
+========================================= */
+.chroma-img-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Memaksa proporsi sama rata semua */
+  padding: 0 !important; /* KUNCI UTAMA: Hapus padding yang bikin bolong */
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+}
+
+.chroma-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important; /* Memaksa gambar mengisi penuh tanpa celah */
+  display: block;
+  border-radius: 20px 20px 0 0; /* Sudut membulat hanya di atas */
+  transition: transform 0.5s ease;
+}
+
+.chroma-card:hover .chroma-img-wrapper img {
+  transform: scale(1.08); /* Efek zoom halus saat di-hover */
+}
+
+/* =========================================
+   4. FEATURED PROJECT (Kepala & Kaki Membentang)
+========================================= */
+@media (min-width: 1024px) {
+  /* Proyek Pertama Membentang 2 Kolom di Atas */
+  .chroma-card:first-child {
+    grid-column: span 2; 
+  }
+  .chroma-card:first-child .chroma-img-wrapper {
+    aspect-ratio: 16 / 9; 
+  }
+
+  /* Proyek Ke-10 (Terakhir) Membentang 2 Kolom di Bawah agar Full */
+  .chroma-card:nth-child(10) {
+    grid-column: span 2;
+  }
+  .chroma-card:nth-child(10) .chroma-img-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* =========================================
+   5. KERAPIAN TEKS
+========================================= */
+.chroma-info {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end; /* Dorong teks ke bawah agar sejajar */
+  gap: 0.4rem;
+}
+
+.chroma-info .name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chroma-info .role {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Batasi teks deskripsi max 2 baris */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- RESPONSIVE KECIL (HP) --- */
+@media (max-width: 640px) {
+  .chroma-card { border-radius: 14px; }
+  .chroma-img-wrapper img { border-radius: 14px 14px 0 0; }
+  .chroma-info { padding: 1rem; }
+  .chroma-info .name { font-size: 0.95rem; }
+  .chroma-info .role { font-size: 0.75rem; }
+}
+
+/* =========================================================
+   6. ANIMASI SPOTLIGHT & MASKING BAWAAN (JANGAN DIHAPUS)
+========================================================= */
 .chroma-card::before {
   content: "";
   position: absolute;
@@ -90,40 +173,6 @@
   opacity: 1;
 }
 
-.chroma-img-wrapper {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  padding: 10px;
-  box-sizing: border-box;
-  background: transparent;
-  transition: background 0.3s ease;
-}
-
-.chroma-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
-
-.chroma-info {
-  position: relative;
-  z-index: 1;
-  padding: 1rem 1rem;
-  color: #fff;
-  font-family: system-ui, sans-serif;
-  display: grid;
-  row-gap: rem;
-  column-gap: 0.75rem;
-}
-
-.chroma-info .role,
-.chroma-info .handle {
-  color: #aaa;
-}
-
 .chroma-overlay {
   position: absolute;
   inset: 0;
@@ -132,7 +181,6 @@
   backdrop-filter: grayscale(1) brightness(0.78);
   -webkit-backdrop-filter: grayscale(1) brightness(0.78);
   background: rgba(0, 0, 0, 0.001);
-
   mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
       transparent 0%,
       transparent 15%,
@@ -161,7 +209,6 @@
   backdrop-filter: grayscale(1) brightness(0.78);
   -webkit-backdrop-filter: grayscale(1) brightness(0.78);
   background: rgba(0, 0, 0, 0.001);
-
   mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
       white 0%,
       white 15%,
@@ -180,7 +227,6 @@
       rgba(255, 255, 255, 0.50) 75%,
       rgba(255, 255, 255, 0.32) 88%,
       transparent 100%);
-
   opacity: 1;
   transition: opacity 0.25s ease;
 }

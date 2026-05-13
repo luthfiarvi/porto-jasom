@@ -7,22 +7,18 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    // Ambil data user yang sedang login
     const getSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
     };
     getSession();
 
-    // Pantau perubahan status login
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
 
-    // Ambil pesan awal
     fetchMessages();
 
-    // Berlangganan pesan baru secara Real-time
     const channel = supabase
       .channel('public:messages')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
@@ -58,13 +54,12 @@ export default function ChatRoom() {
         text: message, 
         user_id: user.id, 
         user_name: user.user_metadata.full_name, 
-        user_avatar: user.user_metadata.avatar_url 
+        user_avatar: user.user_metadata.avatar_url || user.user_metadata.picture 
       }
     ]);
 
     if (error) {
-      console.error("Gagal mengirim pesan:", error.message); // <-- Tambahkan ini untuk melacak masalah
-      alert("Gagal mengirim pesan: " + error.message); // Memunculkan popup error di layar
+      console.error("Gagal mengirim pesan:", error.message);
     } else {
       setMessage("");
     }
@@ -77,21 +72,40 @@ export default function ChatRoom() {
         Live Community Chat
       </h2>
 
-      {/* Tampilan User */}
+      {/* Tampilan User (Header) */}
       {user && (
         <div className="flex justify-between items-center mb-4 bg-zinc-800/50 p-3 rounded-xl border border-zinc-700">
           <div className="flex items-center gap-3">
-            <img src={user.user_metadata.avatar_url} className="w-8 h-8 rounded-full" alt="avatar" />
-            <span className="text-sm text-zinc-300">{user.user_metadata.full_name}</span>
+            <img 
+              src={user?.user_metadata?.avatar_url || user?.user_metadata?.picture} 
+              referrerPolicy="no-referrer"
+              className="w-8 h-8 rounded-full border border-zinc-600 object-cover" 
+              alt="avatar" 
+              onError={(e) => { e.target.src = "https://ui-avatars.com/api/?name=" + user?.user_metadata?.full_name }}
+            />
+            <span className="text-sm font-semibold text-white">
+              {user?.user_metadata?.full_name}
+            </span>
           </div>
-          <button onClick={logout} className="text-xs text-red-400 hover:text-red-300">Logout</button>
+          <button 
+            onClick={logout} 
+            className="text-xs text-red-400 hover:text-red-300 transition-colors"
+          >
+            Logout
+          </button>
         </div>
       )}
 
       {/* Area Chat */}
       <div className="h-64 overflow-y-auto mb-4 space-y-3 pr-2 no-scrollbar">
         {messages.map((msg) => (
-          <div key={msg.id} className={`flex ${msg.user_id === user?.id ? "justify-end" : "justify-start"}`}>
+          <div key={msg.id} className={`flex gap-2 ${msg.user_id === user?.id ? "flex-row-reverse" : "flex-row"}`}>
+            <img 
+              src={msg.user_avatar || "https://via.placeholder.com/150"} 
+              referrerPolicy="no-referrer"
+              className="w-8 h-8 rounded-full border border-zinc-700 object-cover flex-shrink-0" 
+              alt="avatar" 
+            />
             <div className={`max-w-[80%] p-3 rounded-2xl ${msg.user_id === user?.id ? "bg-blue-600 text-white rounded-tr-none" : "bg-zinc-800 text-zinc-200 rounded-tl-none"}`}>
               <p className="text-[10px] opacity-60 mb-1">{msg.user_name}</p>
               <p className="text-sm">{msg.text}</p>
