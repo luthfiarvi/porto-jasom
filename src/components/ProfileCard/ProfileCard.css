@@ -61,6 +61,8 @@
 }
 
 .pc-card {
+  /* KUNCI UTAMA: Bikin kotak ini jadi patokan ukuran dinamis (Container) */
+  container-type: inline-size;
   height: 80svh;
   max-height: 540px;
   display: grid;
@@ -204,12 +206,13 @@
   pointer-events: none;
 }
 
-/* ========================================================= */
-/* BASE CSS LU - 100% SUCI TANPA ADA KODE GUA YANG MERUSAK   */
-/* ========================================================= */
+/* ====================================================================== */
+/* PURE ELASTIC COMPONENT (100% SCALABLE LIKE SVG)                        */
+/* ====================================================================== */
+
 .pc-user-info {
   position: absolute;
-  bottom: 22px;
+  bottom: 6.5cqi; 
   left: 50%;
   transform: translateX(-50%);
   width: 88%;
@@ -220,25 +223,24 @@
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 18px;
-  padding: 14px 16px;
+  border-radius: 5.3cqi; 
+  padding: 4cqi 4.7cqi; 
   pointer-events: auto;
 }
 
 .pc-user-details {
   display: flex;
   align-items: center;
-  gap: 12px;
-  /* GUA HAPUS trik flex-shrink gua yang merusak proporsi desktop */
+  gap: 3.5cqi; 
 }
 
 .pc-mini-avatar {
-  width: 48px;
-  height: 48px;
+  width: 14.1cqi; 
+  height: 14.1cqi; 
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  /* GUA HAPUS flex-shrink gua yang merusak proporsi desktop */
+  flex-shrink: 0; 
 }
 
 .pc-mini-avatar img {
@@ -252,43 +254,42 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 6px;
-  /* GUA HAPUS trik flex gua yang merusak proporsi desktop */
+  gap: 1.7cqi; 
 }
 
 .pc-handle {
-  font-size: 11px;
+  font-size: 3.2cqi; 
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1;
-  /* GUA HAPUS trik '...' yang bikin lu marah */
-  /* padding-bottom: 2px; // Biarin gua simpen ini buat nyelamatin huruf 'j' lu di HP */
+  white-space: nowrap; 
 }
 
 .pc-status {
-  font-size: 11px;
+  font-size: 3.2cqi; 
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
-  /* GUA HAPUS trik '...' yang bikin lu marah */
+  white-space: nowrap;
 }
 
 .pc-contact-btn {
-  transform: translate(6px); /* GUA BALIKIN! Posisi asli lu yang cakep */
+  transform: translate(1.7cqi); 
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 10px 8px;
-  font-size: 9px;
+  border-radius: 2.3cqi; 
+  padding: 2.9cqi 2.3cqi; 
+  font-size: 2.6cqi; 
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
-  /* GUA HAPUS trik flex gua yang merusak proporsi desktop */
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .pc-contact-btn:hover {
   border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
+  transform: translateY(-1px) translate(1.7cqi);
   transition: all 0.2s ease;
 }
 
@@ -348,8 +349,7 @@
 }
 
 /* =======================================================
-   RESPONSIVE MOBILE 
-   Ini cuma ngebenerin posisi kotaknya aja biar gak lari
+   RESPONSIVE MOBILE (HANYA UNTUK TEKS JUDUL ATAS)
    ======================================================= */
 @media (max-width: 768px) {
   .pc-card {
@@ -364,33 +364,6 @@
   }
   .pc-details p {
     font-size: 14px;
-  }
-  .pc-user-info {
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    padding: 10px 12px;
-    /* FIX: Matiin transform supaya posisi left dan right lu bekerja sempurna di tengah */
-    transform: none; 
-    width: auto; 
-  }
-  .pc-mini-avatar {
-    width: 28px;
-    height: 28px;
-  }
-  .pc-user-details {
-    gap: 10px;
-  }
-  .pc-handle {
-    /* FIX: Sedikit dikecilkan supaya nama lu muat penuh TANPA HARUS TERPOTONG */
-    font-size: 11px; 
-  }
-  .pc-status {
-    font-size: 10px;
-  }
-  .pc-contact-btn {
-    padding: 6px 10px;
-    font-size: 10px;
   }
 }
 
@@ -409,34 +382,6 @@
     font-size: 12px;
     top: -8px;
   }
-  .pc-user-info {
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
-    padding: 8px 10px;
-    border-radius: 50px;
-    /* FIX: Sama kayak di atas, matiin transform-nya */
-    transform: none;
-    width: auto;
-  }
-  .pc-mini-avatar {
-    width: 24px;
-    height: 24px;
-  }
-  .pc-user-details {
-    gap: 8px;
-  }
-  .pc-handle {
-    font-size: 11px; 
-  }
-  .pc-status {
-    font-size: 9px;
-  }
-  .pc-contact-btn {
-    padding: 5px 8px;
-    font-size: 9px;
-    border-radius: 50px;
-  }
 }
 
 @media (max-width: 320px) {
@@ -449,27 +394,5 @@
   }
   .pc-details p {
     font-size: 11px;
-  }
-  .pc-user-info {
-    padding: 6px 8px;
-    border-radius: 50px;
-  }
-  .pc-mini-avatar {
-    width: 20px;
-    height: 20px;
-  }
-  .pc-user-details {
-    gap: 6px;
-  }
-  .pc-handle {
-    font-size: 10px;
-  }
-  .pc-status {
-    font-size: 8px;
-  }
-  .pc-contact-btn {
-    padding: 4px 6px;
-    font-size: 9px;
-    border-radius: 50px;
   }
 }
