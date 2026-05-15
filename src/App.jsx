@@ -113,7 +113,9 @@ function App() {
                 showUserInfo={true}
                 enableTilt={true}
                 enableMobileTilt={false}
-                onContactClick={() => console.log('Contact clicked')}
+                onContactClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               />
             </div>
           </div>
@@ -131,36 +133,66 @@ function App() {
                     delay={150}
                     animateBy="words"
                     direction="top"
-                    className="text-base md:text-lg leading-relaxed mb-10 text-gray-300"
+                    className="text-base md:text-lg leading-relaxed mb-4 text-gray-300"
                   />
 
-                  <div className="flex flex-col sm:flex-row items-center sm:justify-between text-center sm:text-left gap-y-8 sm:gap-y-0 mb-4 w-full">
-                    <div>
-                      <h1 className="text-3xl md:text-4xl mb-1">
+                  {/* ============================================================== */}
+                  {/* BENTO BOX STATS DIMULAI DARI SINI */}
+                  {/* ============================================================== */}
+                  <div className="grid grid-cols-2 gap-3 md:gap-4 w-full my-8">
+                    
+                    {/* Box 1: Projects */}
+                    <div className="bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-5 flex flex-col items-center justify-center text-center backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 shadow-lg shadow-black/20" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-once="true">
+                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">
                         15<span className="text-violet-500">+</span>
-                      </h1>
-                      <p>Project Finished</p>
+                      </h3>
+                      <p className="text-[11px] md:text-sm text-zinc-400 font-medium uppercase tracking-wider">
+                        Project Finished
+                      </p>
                     </div>
-                    <div>
-                      <h1 className="text-3xl md:text-4xl mb-1">
+
+                    {/* Box 2: Experience */}
+                    <div className="bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-5 flex flex-col items-center justify-center text-center backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 shadow-lg shadow-black/20" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" data-aos-once="true">
+                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">
                         4<span className="text-violet-500">+</span>
-                      </h1>
-                      <p>Years of Experience</p>
+                      </h3>
+                      <p className="text-[11px] md:text-sm text-zinc-400 font-medium uppercase tracking-wider">
+                        Years Experience
+                      </p>
                     </div>
-                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" data-aos-once="true">
-                      <h1 className="text-3xl md:text-4xl mb-1">
-                        3.55<span className="text-violet-500">/4.00</span>
-                      </h1>
-                      <p>GPA</p>
+
+                    {/* Box 3: GPA & Quote (Full Width) */}
+                    <div className="col-span-2 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 shadow-lg shadow-black/20" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" data-aos-once="true">
+                      
+                      {/* Angka GPA */}
+                      <div className="text-center sm:text-left flex-shrink-0">
+                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-1 flex items-baseline justify-center sm:justify-start">
+                          3.55<span className="text-violet-500 text-xl md:text-2xl ml-1">/4.00</span>
+                        </h3>
+                        <p className="text-[11px] md:text-sm text-zinc-400 font-medium uppercase tracking-wider">
+                          GPA
+                        </p>
+                      </div>
+                      
+                      {/* Garis pemisah buat di HP */}
+                      <div className="w-16 h-[1px] bg-zinc-700/50 sm:hidden my-1"></div>
+                      
+                      {/* Quote */}
+                      <div className="text-center sm:text-right">
+                        <ShinyText
+                          text="Working with heart, creating with mind."
+                          disabled={false}
+                          speed={3}
+                          className="text-sm md:text-base text-violet-400 italic font-light"
+                        />
+                      </div>
+
                     </div>
                   </div>
+                  {/* ============================================================== */}
+                  {/* BENTO BOX STATS SELESAI */}
+                  {/* ============================================================== */}
 
-                  <ShinyText
-                    text="Working with heart, creating with mind."
-                    disabled={false}
-                    speed={3}
-                    className="text-sm md:text-base text-violet-400"
-                  />
                 </div>
               </div>
 
@@ -200,7 +232,7 @@ function App() {
                         className="text-sm sm:text-lg font-semibold block"
                       />
                     </div>
-                     <OverflowText text={tool.ket} />
+                      <OverflowText text={tool.ket} />
                   </div>
                 </div>
               ))}
