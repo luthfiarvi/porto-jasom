@@ -74,7 +74,7 @@ function App() {
           <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
             <div className="animate__animated animate__fadeInUp animate__delay-3s">
               <div className="flex items-center gap-3 mb-6 bg bg-zinc-800 w-fit py-0 px-3 rounded-2xl">
-                <img src="./assets/jasom3.png" className="w-8 scale-120 rounded-md " alt="Icon" />
+                <img src="/assets/jasom3.png" className="w-8 scale-120 rounded-md " alt="Icon" />
                 <q className="text-xs font-small">Never Give Up to Grow</q>
               </div>
               <h1 className="text-3xl font-bold mb-6">
@@ -89,7 +89,7 @@ function App() {
               />
               <div className="flex items-center sm:gap-4 gap-2">
                 <a 
-                  href="./assets/CV.pdf" 
+                  href="/assets/CV.pdf" 
                   download="Muhammad_Jasoma_CV.pdf" 
                   className="font-semibold bg-[#1a1a1a] p-4 px-6 rounded-full border border-gray-700 hover:bg-[#222] transition-colors"
                 >
@@ -109,7 +109,7 @@ function App() {
                 handle="muhammad_jesen14"
                 status="Online"
                 contactText="Contact Me"
-                avatarUrl="./assets/jasom1.jpeg"
+                avatarUrl="/assets/jasom1.jpeg"
                 showUserInfo={true}
                 enableTilt={true}
                 enableMobileTilt={false}
