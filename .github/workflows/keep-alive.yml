@@ -1,0 +1,13 @@
+name: Supabase Auto-Ping
+
+on:
+  schedule:
+    - cron: '0 0 */2 * *'
+  workflow_dispatch: 
+
+jobs:
+  ping-database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ngetuk Pintu Database Supabase
+        run: curl -X GET "https://dnkjrwvnhqbxrrawjiwu.supabase.co/rest/v1/messages?select=id&limit=1" -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRua2pyd3ZuaHFieHJyYXdqaXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MjI2NjAsImV4cCI6MjA5Mzk5ODY2MH0.gwvoNhd0FNwp_FPncDnJljMppuA2zS3kci3JYB2nJIM" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRua2pyd3ZuaHFieHJyYXdqaXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MjI2NjAsImV4cCI6MjA5Mzk5ODY2MH0.gwvoNhd0FNwp_FPncDnJljMppuA2zS3kci3JYB2nJIM"
