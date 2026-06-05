@@ -10,4 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ngetuk Pintu Database Supabase
-        run: curl -s "https://dnkjrwvnhqbxrrawjiwu.supabase.co/rest/v1/messages?limit=1" -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRua2pyd3ZuaHFieHJyYXdqaXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MjI2NjAsImV4cCI6MjA5Mzk5ODY2MH0.gwvoNhd0FNwp_FPncDnJljMppuA2zS3kci3JYB2nJIM" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRua2pyd3ZuaHFieHJyYXdqaXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MjI2NjAsImV4cCI6MjA5Mzk5ODY2MH0.gwvoNhd0FNwp_FPncDnJljMppuA2zS3kci3JYB2nJIM"
+        env:
+          URL: "https://dnkjrwvnhqbxrrawjiwu.supabase.co/rest/v1/messages?limit=1"
+          KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRua2pyd3ZuaHFieHJyYXdqaXd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0MjI2NjAsImV4cCI6MjA5Mzk5ODY2MH0.gwvoNhd0FNwp_FPncDnJljMppuA2zS3kci3JYB2nJIM"
+        run: curl -s -X GET "$URL" -H "apikey:$KEY" -H "Authorization:Bearer $KEY"
