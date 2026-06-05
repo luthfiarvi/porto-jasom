@@ -33,6 +33,7 @@ export const listTools = [
 import Proyek1 from "/assets/proyek/p1a.png";
 import Proyek2 from "/assets/proyek/p2a.png";
 import Proyek3 from "/assets/proyek/p3a.png";
+import Proyek5 from "/assets/proyek/p5a.png"; // <--- IMPORT PROYEK 5 DI SINI
 import Proyek10 from "/assets/proyek/p10a.png"; 
 
 // --- IMPORT KHUSUS PROYEK 4 ---
@@ -110,20 +111,24 @@ export const listProyek = [
   },
 
   // ==========================================================
-  // --- PROYEK 5 sampai 9 (PLACEHOLDER MENGGUNAKAN PROYEK 1) ---
+  // --- PROYEK 5 (SUDAH DIUPDATE KE p5a.png & GALERI OTOMATIS) ---
   // ==========================================================
   {
     id: 5,
-    image: Proyek1, 
-    title: "Project 5 (Coming Soon)",
-    subtitle: "Waiting for client content...",
-    fullDescription: "Detailed description for project 5 will be updated soon once the client provides the content.",
-    gallery: generateGallery(1),
+    image: Proyek5, // <--- SUDAH MENGGUNAKAN GAMBAR PROYEK 5
+    title: "Magnitude Bali", // Tinggal ganti nama proyeknya nanti
+    subtitle: "Magnitude Bali embodies a modern tropical architectural vision...",
+    fullDescription: "Magnitude Bali embodies a modern tropical architectural vision that seamlessly blurs the boundary between indoor and outdoor living, creating a serene and welcoming atmosphere through the interplay of natural light, earthy textured materials, and fluid connections between interior spaces, landscape, and water elements as a reflection of balance, tranquility, and understated luxury.",
+    gallery: generateGallery(5), // <--- SUDAH PAKAI GENERATE GALLERY KARENA FOTO P5 LENGKAP
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "#",
     dad: "500",
   },
+
+  // ==========================================================
+  // --- PROYEK 6 sampai 9 (PLACEHOLDER MENGGUNAKAN PROYEK 1) ---
+  // ==========================================================
   {
     id: 6,
     image: Proyek1, 
