@@ -31,15 +31,9 @@ function App() {
     setSelectedProject(null);
   };
 
-  useEffect(() => {
-    const isReload =
-      performance.getEntriesByType("navigation")[0]?.type === "reload";
-
-    if (isReload) {
-      const baseUrl = window.location.origin + "/portofolio/";
-      window.location.replace(baseUrl);
-    }
-  }, []);
+  // =========================================================
+  // KODINGAN USE-EFFECT REDIRECT "/PORTOFOLIO/" UDAH DIMUSNAHKAN!
+  // =========================================================
 
   useEffect(() => {
     const observer = new IntersectionObserver(
