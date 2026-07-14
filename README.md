@@ -52,8 +52,8 @@ Hai, saya Luthfi Arviandi (username GitHub: `luthfiarvi`).
 Saya seorang Developer yang suka bikin aplikasi web ringan dengan tampilan modern dan performa tinggi. Scroll aja di project saya, dan jangan sungkan untuk reach out kalau ada pertanyaan!
 
 * **Email:** [luthfiarviandi1@gmail.com](mailto:email_luthfiarviandi1@gmail.com)
-* **LinkedIn:** [linkedin.com/in/luthfiarvi](https://www.linkedin.com/in/luthfiarvi/)
-* **Instagram:** @luthfiarvi
+* **LinkedIn:** [luthfiarvi](https://www.linkedin.com/in/luthfiarvi/)
+* **Instagram:** [@luthfiarvi](https://www.instagram.com/luthfiarvi/)
 
 ---
 
